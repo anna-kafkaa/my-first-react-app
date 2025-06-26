@@ -17,22 +17,28 @@
 }
 
 .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: math.div($base-size, 2); // odstęp między ikoną a tytułem
   text-align: center;
   font-size: ($base-size * 1.5);
   margin: 0 0 ($base-size * 1.5) 0;
-}
 
-.icon::before {
-  padding-right: $base-size;
+  .icon {
   color: $color-warning;
   font-size: ($base-size * 2);
-  vertical-align: middle;
-  position: relative;
-  top: - math.div($base-size, 3);
+}
 }
 
 .cards {
   padding: math.div($base-size, 2) 0;
+}
+
+.placeholder {
+  padding: 10px;
+  color: #888;
+  font-style: italic;
 }
 
 @media (max-width: 767px) {

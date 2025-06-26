@@ -5,6 +5,7 @@
   align-items: center;
   gap: $base-size; // odstęp między elementami
   margin-top: $base-size * 2;
+  justify-content: center;
 
   label {
     display: flex;
@@ -35,14 +36,6 @@
     }
   }
   
-  .columnForm {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  flex-wrap: wrap;
-
   label {
     color: white;
     font-weight: bold;
@@ -50,5 +43,5 @@
     align-items: center;
     gap: 5px;
   }
-}
+
 }
