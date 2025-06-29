@@ -1,38 +1,34 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import styles from './ColumnForm.module.scss';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux'; // ✅ import
+import TextInput from '../TextInput/TextInput';
+import Button from '../Button/Button';
 
 const ColumnForm = () => {
   const [title, setTitle] = useState('');
   const [icon, setIcon] = useState('');
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); // ✅ użycie dispatch
 
   const handleSubmit = e => {
-    e.preventDefault();
-    dispatch({ type: 'ADD_COLUMN', newColumn: { title, icon } });
-    setTitle('');
-    setIcon('');
-  };
+  e.preventDefault();
+  if ( !title.trim() || !icon.trim()) return; // 🔥 nie wysyłaj jeśli puste
+  dispatch({ type: 'ADD_COLUMN', payload: { title, icon } });
+  setTitle('');
+  setIcon('');
+};
+
 
   return (
     <form onSubmit={handleSubmit} className={styles.columnForm}>
       <label>
         Title:
-        <input
-          type="text"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-        />
+        <TextInput value={title} onChange={e => setTitle(e.target.value)} />
       </label>
       <label>
         Icon:
-        <input
-          type="text"
-          value={icon}
-          onChange={e => setIcon(e.target.value)}
-        />
+        <TextInput value={icon} onChange={e => setIcon(e.target.value)} />
       </label>
-      <button type="submit">Add column</button>
+      <Button>ADD COLUMN</Button>
     </form>
   );
 };
