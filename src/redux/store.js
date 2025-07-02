@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
           ...state.columns,
           {
             id: shortid(),
-            title: action.payload.title || 'New column',
+            title: action.payload.title,
             icon: action.payload.icon || '📁',
           },
         ],

@@ -2,9 +2,11 @@
 
 .cardForm {
   display: flex;
-  margin-top: 10px;
-  gap: 10px;
+  flex-direction: column;
   align-items: center;
+  gap: $base-size;
+  margin-top: $base-size;
+  width: 100%; // zapewnia dopasowanie do kolumny
 }
 
 .cardInput {

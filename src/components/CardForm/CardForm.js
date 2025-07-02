@@ -20,7 +20,7 @@ const CardForm = ({ columnId }) => {
         type="text"
         value={title}
         onChange={e => setTitle(e.target.value)}
-        placeholder=""
+        placeholder=" "
         className={styles.cardInput} // 👈 KLUCZOWE
       />
       <Button>ADD CARD</Button>

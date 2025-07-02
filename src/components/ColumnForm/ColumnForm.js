@@ -1,9 +1,9 @@
 import styles from './ColumnForm.module.scss';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { addColumn } from '../../redux/store';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
-import { addColumn } from '../../redux/store';
 
 const ColumnForm = () => {
   const [title, setTitle] = useState('');
@@ -12,8 +12,6 @@ const ColumnForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!title.trim() && !icon.trim()) return; // Dodaje jeśli chociaż jedno z nich jest uzupełnione
-
     dispatch(addColumn({ title, icon }));
     setTitle('');
     setIcon('');
