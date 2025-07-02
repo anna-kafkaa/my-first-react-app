@@ -2,10 +2,10 @@ import styles from './List.module.scss';
 import Column from './../Column/Column';
 import ColumnForm from './../ColumnForm/ColumnForm';
 import { useSelector } from 'react-redux';
+import { getAllColumns } from '../../redux/store'; // import selektora
 
 const List = () => {
-  // 🔹 Pobieramy kolumny z magazynu Reduxa
-  const columns = useSelector(state => state.columns);
+  const columns = useSelector(getAllColumns); // użycie selektora
 
   return (
     <div className={styles.list}>
@@ -15,17 +15,16 @@ const List = () => {
         </h2>
       </header>
       <p className={styles.description}>Interesting things I want to check out</p>
-      
+
       <section className={styles.columns}>
         {columns.map(column => (
           <Column
             key={column.id}
-            {...column} // 🔹 przekazujemy id, title, icon
+            {...column} // przekazanie id, title, icon
           />
         ))}
       </section>
 
-      {/* 🔹 Na razie ColumnForm bez akcji - dodamy ją później przy Reducerach */}
       <ColumnForm />
     </div>
   );

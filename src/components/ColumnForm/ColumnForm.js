@@ -1,22 +1,23 @@
 import styles from './ColumnForm.module.scss';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux'; // ✅ import
+import { useDispatch } from 'react-redux';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
+import { addColumn } from '../../redux/store';
 
 const ColumnForm = () => {
   const [title, setTitle] = useState('');
   const [icon, setIcon] = useState('');
-  const dispatch = useDispatch(); // ✅ użycie dispatch
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
-  e.preventDefault();
-  if ( !title.trim() || !icon.trim()) return; // 🔥 nie wysyłaj jeśli puste
-  dispatch({ type: 'ADD_COLUMN', payload: { title, icon } });
-  setTitle('');
-  setIcon('');
-};
+    e.preventDefault();
+    if (!title.trim() && !icon.trim()) return; // Dodaje jeśli chociaż jedno z nich jest uzupełnione
 
+    dispatch(addColumn({ title, icon }));
+    setTitle('');
+    setIcon('');
+  };
 
   return (
     <form onSubmit={handleSubmit} className={styles.columnForm}>
@@ -34,5 +35,7 @@ const ColumnForm = () => {
 };
 
 export default ColumnForm;
+
+
 
 

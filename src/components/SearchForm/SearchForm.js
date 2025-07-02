@@ -3,29 +3,32 @@ import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { updateSearchString } from '../../redux/store';
 
 const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch();
 
-  const handleSearch = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    dispatch({ type: 'UPDATE_SEARCHSTRING', payload: searchTerm });
+    dispatch(updateSearchString(searchTerm));
   };
 
   return (
-    <form className={styles.searchForm} onSubmit={handleSearch}>
+    <form className={styles.searchForm} onSubmit={handleSubmit}>
       <TextInput
         placeholder="Search..."
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
       />
-      <Button>
-        <span className="fa fa-search" />
-      </Button>
+      <Button>SEARCH</Button>
     </form>
   );
 };
 
 export default SearchForm;
+
+
+
+
 
