@@ -31,7 +31,10 @@
       &.active {
         text-decoration: underline;
       }
+
+      &.linkActive {
+        color: $color-warning;
+      }
     }
   }
-  
 }
