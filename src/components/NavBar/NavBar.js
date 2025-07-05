@@ -1,6 +1,6 @@
 import styles from './NavBar.module.scss';
 import Container from '../Container/Container';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { faTasks } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -9,14 +9,16 @@ const NavBar = () => {
     <nav className={styles.nav}>
       <Container>
         <div className={styles.wrapper}>
-          <NavLink to="/" className={styles.logo}>
+          <Link to="/" className={styles.logo}>
             <FontAwesomeIcon icon={faTasks} />
-          </NavLink>
+          </Link>
           <ul className={styles.menu}>
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/favorite">Favorite</NavLink></li>
-            <li><NavLink to="/about">About</NavLink></li>
-          </ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/favorite">Favorite</Link></li>
+            <li><Link to="/about">About</Link></li>
+        </ul>
+
+
         </div>
       </Container>
     </nav>
