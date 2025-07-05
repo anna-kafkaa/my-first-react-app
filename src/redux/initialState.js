@@ -1,4 +1,16 @@
 const initialState = { 
+  lists: [
+    {
+      id: 1,
+      title: 'Things to do...',
+      description: 'Interesting things I want to check out',
+    },
+    {
+      id: 2,
+      title: 'Test list',
+      description: 'Lorem Ipsum',
+    },
+  ],
   columns: [
     { id: 1, listId: 1, title: 'Books', icon: 'book' },
     { id: 2, listId: 1, title: 'Movies', icon: 'film' },
@@ -13,18 +25,7 @@ const initialState = {
     { id: 5, columnId: 3, title: 'The Witcher' },
     { id: 6, columnId: 3, title: 'Skyrim' },
   ],
-  lists: [
-    {
-      id: 1,
-      title: 'Things to do...',
-      description: 'Interesting things I want to check out',
-    },
-    {
-      id: 2,
-      title: 'Test list',
-      description: 'Lorem Ipsum',
-    },
-  ],
+  
   searchString: '',
 };
 
