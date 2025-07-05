@@ -1,0 +1,37 @@
+@use 'sass:color';
+@import '../../styles/settings.scss';
+
+.nav {
+  background-color: color.adjust($color-dark, $lightness: -3%);
+  padding: 10px 0;
+  color: white;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+  }
+
+  .menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+
+      &.active {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+}
