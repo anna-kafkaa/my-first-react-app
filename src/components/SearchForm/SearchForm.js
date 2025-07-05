@@ -1,6 +1,5 @@
 import styles from './SearchForm.module.scss';
 import TextInput from '../TextInput/TextInput';
-import Button from '../Button/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateSearchString } from '../../redux/store';
@@ -21,12 +20,16 @@ const SearchForm = () => {
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
       />
-      <Button>SEARCH</Button>
+      <button type="submit" className={styles.button}>
+        <i className="fa fa-search" />
+      </button>
     </form>
   );
 };
 
 export default SearchForm;
+
+
 
 
 

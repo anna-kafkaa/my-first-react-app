@@ -7,6 +7,13 @@ import { createSelector } from 'reselect';
 // selectors
 export const getAllColumns = state => state.columns;
 
+export const getAllLists = state => state.lists;
+
+export const getListById = (state, id) => state.lists.find(list => list.id === id);
+
+export const getColumnsByList = (state, listId) =>
+  state.columns.filter(column => column.listId === listId);
+
 export const getFilteredCards = createSelector(
   state => state.cards,
   state => state.searchString,

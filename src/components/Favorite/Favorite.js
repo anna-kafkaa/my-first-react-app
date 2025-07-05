@@ -4,10 +4,9 @@ const Favorite = () => {
   return (
     <div>
       <PageTitle>Favorite</PageTitle>
-      <p>Lorem Ipsum.</p>
+      <p>Lorem ipsum.</p>
     </div>
   );
 };
 
 export default Favorite;
-

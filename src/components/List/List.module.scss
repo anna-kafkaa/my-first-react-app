@@ -9,7 +9,9 @@
     margin: 0 0 ($base-size * 3) 0;
     overflow: hidden;
     border-radius: $radius;
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -29,8 +31,18 @@
 }
 
 .description {
-    margin: 0 0 36px;
-    text-align: center;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+.subtitle {
+  margin: 20px auto;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
 }
 
 .columns {
@@ -38,6 +50,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
 
 
 
