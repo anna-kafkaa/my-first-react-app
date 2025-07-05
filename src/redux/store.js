@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
           ...state.columns,
           {
             id: shortid(),
-            title: action.payload.title,
+            title: action.payload.title || 'New column',
             icon: action.payload.icon || '📁',
           },
         ],
@@ -65,6 +65,8 @@ const store = createStore(
 );
 
 export default store;
+
+
 
 
 

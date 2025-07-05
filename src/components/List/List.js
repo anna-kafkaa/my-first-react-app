@@ -2,10 +2,10 @@ import styles from './List.module.scss';
 import Column from './../Column/Column';
 import ColumnForm from './../ColumnForm/ColumnForm';
 import { useSelector } from 'react-redux';
-import { getAllColumns } from '../../redux/store';
+import { getAllColumns } from '../../redux/store'; // import selektora
 
 const List = () => {
-  const columns = useSelector(getAllColumns);
+  const columns = useSelector(getAllColumns); // użycie selektora
 
   return (
     <div className={styles.list}>
@@ -20,18 +20,18 @@ const List = () => {
         {columns.map(column => (
           <Column
             key={column.id}
-            {...column}
+            {...column} // przekazanie id, title, icon
           />
         ))}
-        
-        {/* Formularz dodawania kolumny na końcu */}
-        <ColumnForm />
       </section>
+
+      <ColumnForm />
     </div>
   );
 };
 
 export default List;
+
 
 
 
