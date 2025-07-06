@@ -14,7 +14,21 @@
   transition: border 0.2s ease;
 }
 
-.starButton {
+.title {
+  flex-grow: 1;
+  text-align: left;
+  color: black; 
+}
+
+/* Nowy kontener na przyciski */
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.starButton,
+.removeButton {
   background: none;
   border: none;
   padding: 0;
@@ -31,12 +45,18 @@
   }
 }
 
+.removeButton {
+  color: black;
+
+  &:hover {
+    color: black;
+  }
+}
+
 .active {
   color: gold;
 }
 
-.title {
-  flex-grow: 1;
-  text-align: left;
-  color: black; 
+.favorite {
+  border: 2px solid gold;
 }
