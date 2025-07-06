@@ -4,10 +4,14 @@ import shortid from 'shortid';
 import strContains from '../utils/strContains';
 import { createSelector } from 'reselect';
 
-// selectors
+// === SELECTORS ===
+
 export const getAllColumns = state => state.columns;
 
 export const getAllLists = state => state.lists;
+
+export const getSearchString = state => state.searchString;
+
 
 export const getListById = (state, id) =>
   state.lists.find(list => list.id === id);
@@ -27,15 +31,25 @@ export const getFilteredCards = createSelector(
     )
 );
 
-// action creators
-export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
-export const addCard = payload => ({ type: 'ADD_CARD', payload });
+// === ACTION CREATORS ===
+
+export const addColumn = payload => ({
+  type: 'ADD_COLUMN',
+  payload,
+});
+
+export const addCard = payload => ({
+  type: 'ADD_CARD',
+  payload,
+});
+
 export const updateSearchString = payload => ({
   type: 'UPDATE_SEARCHSTRING',
   payload,
 });
 
-// reducer
+// === REDUCER ===
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_COLUMN':
@@ -47,29 +61,36 @@ const reducer = (state = initialState, action) => {
             id: shortid(),
             title: action.payload.title || 'New column',
             icon: action.payload.icon || '📁',
-            listId: action.payload.listId, // ✅ kluczowa poprawka!
+            listId: action.payload.listId, // ✅ kluczowe — kolumna trafia do właściwej listy
           },
         ],
       };
+
     case 'ADD_CARD':
       return {
         ...state,
         cards: [
           ...state.cards,
-          { ...action.payload, id: shortid() },
+          {
+            ...action.payload,
+            id: shortid(),
+          },
         ],
       };
+
     case 'UPDATE_SEARCHSTRING':
       return {
         ...state,
         searchString: action.payload,
       };
+
     default:
       return state;
   }
 };
 
-// store
+// === STORE ===
+
 const store = createStore(
   reducer,
   initialState,

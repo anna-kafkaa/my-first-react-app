@@ -3,16 +3,17 @@ import Column from './../Column/Column';
 import ColumnForm from './../ColumnForm/ColumnForm';
 import PageTitle from './../PageTitle/PageTitle';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getListById } from '../../redux/store';
-import { getColumnsByList } from '../../redux/store';
+import { useParams, Navigate } from 'react-router-dom'; // <== dodano Navigate
+import { getListById, getColumnsByList } from '../../redux/store';
+import SearchForm from '../SearchForm/SearchForm'; // <== dodano import
 
 const List = () => {
   const { listId } = useParams();
   const listData = useSelector(state => getListById(state, listId));
   const columns = useSelector(state => getColumnsByList(state, listId));
 
-  if (!listData) return <p className={styles.error}>404 – List not found</p>;
+  // jeśli nie znaleziono listy => przekieruj na stronę główną
+  if (!listData) return <Navigate to="/" />;
 
   return (
     <div className={styles.list}>
@@ -20,6 +21,10 @@ const List = () => {
         <PageTitle>{listData.title}</PageTitle>
       </header>
       <p className={styles.description}>{listData.description}</p>
+
+      {/* Dodany komponent wyszukiwarki */}
+      <SearchForm />
+
       <section className={styles.columns}>
         {columns.map(column => (
           <Column key={column.id} {...column} />
@@ -32,9 +37,3 @@ const List = () => {
 };
 
 export default List;
-
-
-
-
-
-

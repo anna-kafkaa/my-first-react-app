@@ -2,7 +2,6 @@ import styles from './Home.module.scss';
 import { useSelector } from 'react-redux';
 import { getAllLists } from '../../redux/store';
 import { Link } from 'react-router-dom';
-import SearchForm from '../SearchForm/SearchForm'; // ✅ dodany import
 
 const Home = () => {
   const lists = useSelector(getAllLists);
@@ -13,8 +12,6 @@ const Home = () => {
       <p className={styles.subtitle}>
         A simple to-do app, with lists, columns and card
       </p>
-
-      <SearchForm /> {/* ✅ użycie komponentu z reduxem i odstępem */}
 
       <h2 className={styles.title}>Browse lists</h2>
 
@@ -31,7 +28,6 @@ const Home = () => {
 };
 
 export default Home;
-
 
 
 

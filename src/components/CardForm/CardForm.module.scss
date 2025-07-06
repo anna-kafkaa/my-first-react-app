@@ -14,8 +14,12 @@
   border: 1px solid lighten($color-dark, 60%);
   border-radius: $radius;
   font-weight: bold;
+  height: 40px;
 }
 
-
+button {
+  height: 40px;
+  padding: 0 20px;
+}
 
 
