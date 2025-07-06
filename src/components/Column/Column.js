@@ -4,10 +4,8 @@ import CardForm from '../CardForm/CardForm';
 import { useSelector } from 'react-redux';
 import { getFilteredCards } from '../../redux/store';
 
-const Column = props => {
-  const cards = useSelector(state => getFilteredCards(state, props.id));
-
-  console.log('Column render'); // do debugowania - można usunąć później
+const Column = (props) => {
+  const cards = useSelector((state) => getFilteredCards(state, props.id));
 
   return (
     <article className={styles.column}>
@@ -17,8 +15,13 @@ const Column = props => {
       </h2>
 
       <ul className={styles.cards}>
-        {cards.map(card => (
-          <Card key={card.id} title={card.title} />
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            id={card.id}
+            title={card.title}
+            isFavorite={card.isFavorite}
+          />
         ))}
       </ul>
 
@@ -27,5 +30,6 @@ const Column = props => {
   );
 };
 
-export default Column; 
+export default Column;
+
 

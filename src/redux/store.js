@@ -1,3 +1,5 @@
+// src/redux/store.js
+
 import { createStore } from 'redux';
 import initialState from './initialState';
 import shortid from 'shortid';
@@ -7,9 +9,7 @@ import { createSelector } from 'reselect';
 // === SELECTORS ===
 
 export const getAllColumns = state => state.columns;
-
 export const getAllLists = state => state.lists;
-
 export const getSearchString = state => state.searchString;
 
 export const getListById = (state, id) =>
@@ -30,6 +30,9 @@ export const getFilteredCards = createSelector(
     )
 );
 
+export const getFavoriteCards = state =>
+  state.cards.filter(card => card.isFavorite);
+
 // === ACTION CREATORS ===
 
 export const addColumn = payload => ({
@@ -49,6 +52,11 @@ export const updateSearchString = payload => ({
 
 export const addList = payload => ({
   type: 'ADD_LIST',
+  payload,
+});
+
+export const toggleCardFavorite = payload => ({
+  type: 'TOGGLE_CARD_FAVORITE',
   payload,
 });
 
@@ -78,6 +86,7 @@ const reducer = (state = initialState, action) => {
           {
             ...action.payload,
             id: shortid(),
+            isFavorite: false, // domyślnie niepolubiona karta
           },
         ],
       };
@@ -101,6 +110,16 @@ const reducer = (state = initialState, action) => {
         ],
       };
 
+    case 'TOGGLE_CARD_FAVORITE':
+      return {
+        ...state,
+        cards: state.cards.map(card =>
+          card.id === action.payload
+            ? { ...card, isFavorite: !card.isFavorite }
+            : card
+        ),
+      };
+
     default:
       return state;
   }
@@ -116,3 +135,6 @@ const store = createStore(
 );
 
 export default store;
+
+
+
