@@ -4,7 +4,8 @@ import ColumnForm from './../ColumnForm/ColumnForm';
 import PageTitle from './../PageTitle/PageTitle';
 import { useSelector } from 'react-redux';
 import { useParams, Navigate } from 'react-router-dom'; // <== dodano Navigate
-import { getListById, getColumnsByList } from '../../redux/store';
+import { getListById } from '../../redux/listsRedux';
+import { getColumnsByList } from '../../redux/columnsRedux';
 import SearchForm from '../SearchForm/SearchForm'; // <== dodano import
 
 const List = () => {

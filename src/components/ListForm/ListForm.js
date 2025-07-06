@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addList } from '../../redux/store';
+import { addList } from '../../redux/listsRedux';
 import styles from './ListForm.module.scss';
 
 const ListForm = () => {

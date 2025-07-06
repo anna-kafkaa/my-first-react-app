@@ -1,7 +1,7 @@
 import styles from './SearchForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { updateSearchString, getSearchString } from '../../redux/store';
+import { getSearchString, updateSearchString } from '../../redux/searchStringRedux';
 
 const SearchForm = () => {
   const dispatch = useDispatch();

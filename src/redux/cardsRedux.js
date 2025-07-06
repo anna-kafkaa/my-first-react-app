@@ -1,10 +1,43 @@
 import shortid from 'shortid';
+import { createSelector } from 'reselect';
+import strContains from '../utils/strContains';
 
+// selectors
+export const getFilteredCards = createSelector(
+  state => state.cards,
+  state => state.searchString,
+  (_, columnId) => columnId,
+  (cards, searchString, columnId) =>
+    cards.filter(
+      card =>
+        card.columnId === columnId && strContains(card.title, searchString)
+    )
+);
+
+export const getFavoriteCards = ({ cards }) =>
+  cards.filter(card => card.isFavorite);
+
+// actions
+const createActionName = actionName => `app/cards/${actionName}`;
+const ADD_CARD = createActionName('ADD_CARD');
+const TOGGLE_CARD_FAVORITE = createActionName('TOGGLE_CARD_FAVORITE');
+
+// action creators
+export const addCard = payload => ({ type: ADD_CARD, payload });
+export const toggleCardFavorite = payload => ({
+  type: TOGGLE_CARD_FAVORITE,
+  payload,
+});
+
+// reducer
 const cardsReducer = (statePart = [], action) => {
   switch (action.type) {
-    case 'ADD_CARD':
-      return [...statePart, { ...action.payload, id: shortid(), isFavorite: false }];
-    case 'TOGGLE_CARD_FAVORITE':
+    case ADD_CARD:
+      return [
+        ...statePart,
+        { ...action.payload, id: shortid(), isFavorite: false },
+      ];
+    case TOGGLE_CARD_FAVORITE:
       return statePart.map(card =>
         card.id === action.payload
           ? { ...card, isFavorite: !card.isFavorite }
@@ -16,3 +49,4 @@ const cardsReducer = (statePart = [], action) => {
 };
 
 export default cardsReducer;
+
