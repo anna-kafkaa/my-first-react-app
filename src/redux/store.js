@@ -1,9 +1,11 @@
+// src/redux/store.js
+
 import { createStore, combineReducers } from 'redux';
 import initialState from './initialState';
 import { createSelector } from 'reselect';
 import strContains from '../utils/strContains';
 
-// Import subreducerów
+// === SUBREDUCERS ===
 import {
   listsReducer,
   columnsReducer,
@@ -12,9 +14,8 @@ import {
 } from './reducers';
 
 // === SELECTORS ===
-
-export const getAllColumns = state => state.columns;
 export const getAllLists = state => state.lists;
+export const getAllColumns = state => state.columns;
 export const getSearchString = state => state.searchString;
 
 export const getListById = (state, id) =>
@@ -39,26 +40,21 @@ export const getFavoriteCards = state =>
   state.cards.filter(card => card.isFavorite);
 
 // === ACTION CREATORS ===
-
+export const addList = payload => ({ type: 'ADD_LIST', payload });
 export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
 export const addCard = payload => ({ type: 'ADD_CARD', payload });
-export const addList = payload => ({ type: 'ADD_LIST', payload });
 export const updateSearchString = payload => ({ type: 'UPDATE_SEARCHSTRING', payload });
 export const toggleCardFavorite = payload => ({ type: 'TOGGLE_CARD_FAVORITE', payload });
 
-// === REDUCER ===
-
-const subreducers = {
+// === MAIN REDUCER ===
+const reducer = combineReducers({
   lists: listsReducer,
   columns: columnsReducer,
   cards: cardsReducer,
   searchString: searchStringReducer
-}
-
-const reducer = combineReducers(subreducers);
+});
 
 // === STORE ===
-
 const store = createStore(
   reducer,
   initialState,
@@ -66,6 +62,7 @@ const store = createStore(
 );
 
 export default store;
+
 
 
 
