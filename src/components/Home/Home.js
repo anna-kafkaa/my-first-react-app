@@ -2,6 +2,7 @@ import styles from './Home.module.scss';
 import { useSelector } from 'react-redux';
 import { getAllLists } from '../../redux/store';
 import { Link } from 'react-router-dom';
+import ListForm from '../ListForm/ListForm'; // ✅ DODANY import
 
 const Home = () => {
   const lists = useSelector(getAllLists);
@@ -23,11 +24,14 @@ const Home = () => {
           </div>
         </Link>
       ))}
+
+      <ListForm /> {/* ✅ DODANY formularz do dodawania list */}
     </div>
   );
 };
 
 export default Home;
+
 
 
 

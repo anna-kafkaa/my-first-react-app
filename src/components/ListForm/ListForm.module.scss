@@ -1,0 +1,33 @@
+@import '../../styles/settings.scss';
+
+.listForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+
+  input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 200px;
+  }
+
+  button {
+    background: $color-success;
+    border: 0;
+    color: $color-light;
+    padding: 10px 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: $radius;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+      background: darken($color-success, 5%);
+    }
+  }
+}

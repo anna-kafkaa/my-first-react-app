@@ -12,7 +12,6 @@ export const getAllLists = state => state.lists;
 
 export const getSearchString = state => state.searchString;
 
-
 export const getListById = (state, id) =>
   state.lists.find(list => list.id === id);
 
@@ -48,6 +47,11 @@ export const updateSearchString = payload => ({
   payload,
 });
 
+export const addList = payload => ({
+  type: 'ADD_LIST',
+  payload,
+});
+
 // === REDUCER ===
 
 const reducer = (state = initialState, action) => {
@@ -61,7 +65,7 @@ const reducer = (state = initialState, action) => {
             id: shortid(),
             title: action.payload.title || 'New column',
             icon: action.payload.icon || '📁',
-            listId: action.payload.listId, // ✅ kluczowe — kolumna trafia do właściwej listy
+            listId: action.payload.listId,
           },
         ],
       };
@@ -82,6 +86,19 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         searchString: action.payload,
+      };
+
+    case 'ADD_LIST':
+      return {
+        ...state,
+        lists: [
+          ...state.lists,
+          {
+            id: shortid(),
+            title: action.payload.title,
+            description: action.payload.description,
+          },
+        ],
       };
 
     default:
