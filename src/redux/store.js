@@ -9,7 +9,8 @@ export const getAllColumns = state => state.columns;
 
 export const getAllLists = state => state.lists;
 
-export const getListById = (state, id) => state.lists.find(list => list.id === id);
+export const getListById = (state, id) =>
+  state.lists.find(list => list.id === id);
 
 export const getColumnsByList = (state, listId) =>
   state.columns.filter(column => column.listId === listId);
@@ -29,7 +30,10 @@ export const getFilteredCards = createSelector(
 // action creators
 export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
 export const addCard = payload => ({ type: 'ADD_CARD', payload });
-export const updateSearchString = payload => ({ type: 'UPDATE_SEARCHSTRING', payload });
+export const updateSearchString = payload => ({
+  type: 'UPDATE_SEARCHSTRING',
+  payload,
+});
 
 // reducer
 const reducer = (state = initialState, action) => {
@@ -43,6 +47,7 @@ const reducer = (state = initialState, action) => {
             id: shortid(),
             title: action.payload.title || 'New column',
             icon: action.payload.icon || '📁',
+            listId: action.payload.listId, // ✅ kluczowa poprawka!
           },
         ],
       };
@@ -64,6 +69,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+// store
 const store = createStore(
   reducer,
   initialState,
@@ -72,9 +78,3 @@ const store = createStore(
 );
 
 export default store;
-
-
-
-
-
-

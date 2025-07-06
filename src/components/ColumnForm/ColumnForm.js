@@ -5,7 +5,7 @@ import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import { addColumn } from '../../redux/store';
 
-const ColumnForm = () => {
+const ColumnForm = ({ listId }) => {
   const [title, setTitle] = useState('');
   const [icon, setIcon] = useState('');
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const ColumnForm = () => {
     e.preventDefault();
     if (!title.trim() && !icon.trim()) return; // Dodaje jeśli chociaż jedno z nich jest uzupełnione
 
-    dispatch(addColumn({ title, icon }));
+    dispatch(addColumn({ title, icon, listId }));
     setTitle('');
     setIcon('');
   };
