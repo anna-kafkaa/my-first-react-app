@@ -2,9 +2,15 @@
 
 import { createStore } from 'redux';
 import initialState from './initialState';
-import shortid from 'shortid';
 import strContains from '../utils/strContains';
 import { createSelector } from 'reselect';
+
+import {
+  listsReducer,
+  columnsReducer,
+  cardsReducer,
+  searchStringReducer,
+} from './reducers'; // <--- nowy import
 
 // === SELECTORS ===
 
@@ -63,66 +69,12 @@ export const toggleCardFavorite = payload => ({
 // === REDUCER ===
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'ADD_COLUMN':
-      return {
-        ...state,
-        columns: [
-          ...state.columns,
-          {
-            id: shortid(),
-            title: action.payload.title || 'New column',
-            icon: action.payload.icon || '📁',
-            listId: action.payload.listId,
-          },
-        ],
-      };
-
-    case 'ADD_CARD':
-      return {
-        ...state,
-        cards: [
-          ...state.cards,
-          {
-            ...action.payload,
-            id: shortid(),
-            isFavorite: false, // domyślnie niepolubiona karta
-          },
-        ],
-      };
-
-    case 'UPDATE_SEARCHSTRING':
-      return {
-        ...state,
-        searchString: action.payload,
-      };
-
-    case 'ADD_LIST':
-      return {
-        ...state,
-        lists: [
-          ...state.lists,
-          {
-            id: shortid(),
-            title: action.payload.title,
-            description: action.payload.description,
-          },
-        ],
-      };
-
-    case 'TOGGLE_CARD_FAVORITE':
-      return {
-        ...state,
-        cards: state.cards.map(card =>
-          card.id === action.payload
-            ? { ...card, isFavorite: !card.isFavorite }
-            : card
-        ),
-      };
-
-    default:
-      return state;
-  }
+  return {
+    lists: listsReducer(state.lists, action),
+    columns: columnsReducer(state.columns, action),
+    cards: cardsReducer(state.cards, action),
+    searchString: searchStringReducer(state.searchString, action),
+  };
 };
 
 // === STORE ===
@@ -135,6 +87,7 @@ const store = createStore(
 );
 
 export default store;
+
 
 
 
